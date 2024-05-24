@@ -12,24 +12,29 @@ import java.util.ArrayList;
  * @author Than
  */
 public class DAO {
-    private Connection conn;
-    
-    public DAO(){
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databasename=Tutorial;"
-                    + "username=sa;password=123");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
+private 	Connection connection ;
+	public  DAO() {
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			String url = "jdbc:sqlserver://localhost:1433;databaseName=Tkhdt;trustServerCertificate=true";
+			connection = DriverManager.getConnection(url, "sa", "123456");
+			if(connection != null) {
+				System.out.println("Ket noi thanh cong");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.toString());
+		}
+
+	}
+
+	
     public boolean addStudent(Student s){
         
         String sql = "INSERT INTO tblStudent(ID, name, dob, address, phone, email, mark) "
                 + "VALUES(?,?,?,?,?,?,?)";
         try {
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, s.getID());
             ps.setString(2, s.getName());
             ps.setDate(3, new Date(s.getDob().getTime()));
@@ -49,16 +54,16 @@ public class DAO {
     
     public ArrayList<Student> getListStudent(){
         ArrayList<Student> list = new ArrayList<>();
-        String sql = "SELECT * FROM tblStudent";
+        String sql = "SELECT * FROM student";
         
         try {
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Student s = new Student();
                 s.setID(rs.getString("ID"));
                 s.setName(rs.getString("name"));
-                s.setDob(rs.getDate("dob"));
+                s.setDob(rs.getDate("dod"));
                 s.setAddress(rs.getString("address"));
                 s.setPhone(rs.getString("phone"));
                 s.setEmail(rs.getString("email"));

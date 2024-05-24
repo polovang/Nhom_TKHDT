@@ -1,5 +1,5 @@
 package tkhdt;
 
-public class CapPhatThuoc {
-
+public interface CapPhatThuoc  {
+ public double phuPhi();
 }

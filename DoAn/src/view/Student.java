@@ -17,7 +17,7 @@ public class Student implements Serializable {
 
     private String name, address, email, phone, ID;
     private float mark;
-    private Date dob;// dd/mm/yyyy
+    private Date dod;// dd/mm/yyyy
 	public String getName() {
 		return name;
 	}
@@ -55,10 +55,10 @@ public class Student implements Serializable {
 		this.mark = mark;
 	}
 	public Date getDob() {
-		return dob;
+		return dod;
 	}
-	public void setDob(Date dob) {
-		this.dob = dob;
+	public void setDob(Date dod) {
+		this.dod= dod;
 	}
 
 
