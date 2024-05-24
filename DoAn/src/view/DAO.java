@@ -16,7 +16,7 @@ private 	Connection connection ;
 	public  DAO() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			String url = "jdbc:sqlserver://localhost:1433;databaseName=Tkhdt;trustServerCertificate=true";
+			String url = "jdbc:sqlserver://DESKTOP-DG8QK26\\NGUYENVANVANG:1433;databaseName=Tkhdt;encrypt=true;trustServerCertificate=true";
 			connection = DriverManager.getConnection(url, "sa", "123456");
 			if(connection != null) {
 				System.out.println("Ket noi thanh cong");
@@ -27,8 +27,6 @@ private 	Connection connection ;
 		}
 
 	}
-
-	
     public boolean addStudent(Student s){
         
         String sql = "INSERT INTO tblStudent(ID, name, dob, address, phone, email, mark) "
@@ -54,7 +52,7 @@ private 	Connection connection ;
     
     public ArrayList<Student> getListStudent(){
         ArrayList<Student> list = new ArrayList<>();
-        String sql = "SELECT * FROM student";
+        String sql = "SELECT * FROM tblStudent";
         
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -63,7 +61,7 @@ private 	Connection connection ;
                 Student s = new Student();
                 s.setID(rs.getString("ID"));
                 s.setName(rs.getString("name"));
-                s.setDob(rs.getDate("dod"));
+                s.setDob(rs.getDate("dob"));
                 s.setAddress(rs.getString("address"));
                 s.setPhone(rs.getString("phone"));
                 s.setEmail(rs.getString("email"));

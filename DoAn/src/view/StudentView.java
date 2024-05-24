@@ -8,6 +8,9 @@ package view;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +22,7 @@ public class StudentView extends javax.swing.JFrame {
 
     private ArrayList<Student> list;
     DefaultTableModel model;
+    private JMenu capthuoc,trangchu,quanli,laplich,dangxuat;
 
     /**
      * Creates new form StudentView
@@ -58,6 +62,13 @@ public class StudentView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        JMenuBar bar = new JMenuBar();
+		setJMenuBar(bar);
+		bar.add( trangchu= new JMenu("Trang Chủ"));
+		bar.add(quanli = new JMenu("Quan Li Thong Tin"));
+		bar.add(laplich = new JMenu("Lap Lich Kham"));
+		bar.add(capthuoc = new JMenu("Cap Phat Thuoc"));
+		bar.add(dangxuat = new JMenu("Dang Xuat"));
         txtname = new javax.swing.JTextField();
         txtaddress = new javax.swing.JTextField();
         txtid = new javax.swing.JTextField();

@@ -1,28 +1,15 @@
 package view;
 
-
 import java.io.Serializable;
 import java.util.Date;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Than
- */
 public class Student implements Serializable {
 
     private String name, address, email, phone, ID;
     private float mark;
-    private Date dod;// dd/mm/yyyy
+    private Date dob;// dd/mm/yyyy
 	public String getName() {
 		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getAddress() {
 		return address;
@@ -55,11 +42,15 @@ public class Student implements Serializable {
 		this.mark = mark;
 	}
 	public Date getDob() {
-		return dod;
+		return dob;
 	}
-	public void setDob(Date dod) {
-		this.dod= dod;
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
-
-
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
 }
+	
