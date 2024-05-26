@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class DAO {
 	private Connection connection;
-	 private static final String URL = "jdbc:sqlserver://LAPTOP-2N4FG4M4\\THUONG:1433;databaseName=Tkhdt;encrypt=true;trustServerCertificate=true;";
+	 private static final String URL = "jdbc:sqlserver://DESKTOP-DG8QK26\\NGUYENVANVANG:1433;databaseName=Tkhdt;encrypt=true;trustServerCertificate=true;";
 	    private static final String USER = "sa";
-	    private static final String PASSWORD = "12345678";
+	    private static final String PASSWORD = "123456";
 	public DAO() {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

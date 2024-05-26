@@ -21,16 +21,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Than
  */
-public class StudentView extends javax.swing.JFrame {
+public class ViewBenhNhan extends javax.swing.JFrame {
 
 	private ArrayList<BenhNhan> list;
 	DefaultTableModel model;
 	private JMenu capthuoc, trangchu, quanli, laplich, dangxuat;
-
+    private JMenuItem thongTinBenhAn;
 	/**
 	 * Creates new form StudentView
 	 */
-	public StudentView() {
+	public ViewBenhNhan() {
 		initComponents();
 		this.setLocationRelativeTo(null);
 		list = new BenhVien().getListBenhNhan();
@@ -61,7 +61,7 @@ public class StudentView extends javax.swing.JFrame {
 		setJMenuBar(bar);
 		bar.add(trangchu = new JMenu("Trang Chủ"));
 		bar.add(quanli = new JMenu("Quan Li Thong Tin"));
-		quanli.add(new JMenuItem("Thông Tin Bệnh Án"));
+		quanli.add(thongTinBenhAn=new JMenuItem("Thông Tin Bệnh Án"));
 		bar.add(laplich = new JMenu("Lap Lich Kham"));
 		bar.add(capthuoc = new JMenu("Cap Phat Thuoc"));
 		bar.add(dangxuat = new JMenu("Dang Xuat"));
@@ -108,6 +108,11 @@ public class StudentView extends javax.swing.JFrame {
 		jButton3.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton3ActionPerformed(evt);
+			}
+		});
+		thongTinBenhAn.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jButton2ActionPerformed(evt);
 			}
 		});
 
@@ -230,9 +235,10 @@ benhVien.DeleteRow(iD);
 		list.remove(select);
 
 	}else {
-		JOptionPane.showMessageDialog(rootPane, "Vui Long Nhap !");
+		JOptionPane.showMessageDialog(rootPane, "Vui Lòng Chọn !");
 	}
 }
+
 
 	public static void main(String args[]) {
 		try {
@@ -243,21 +249,21 @@ benhVien.DeleteRow(iD);
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(StudentView.class.getName()).log(java.util.logging.Level.SEVERE, null,
+			java.util.logging.Logger.getLogger(ViewBenhNhan.class.getName()).log(java.util.logging.Level.SEVERE, null,
 					ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(StudentView.class.getName()).log(java.util.logging.Level.SEVERE, null,
+			java.util.logging.Logger.getLogger(ViewBenhNhan.class.getName()).log(java.util.logging.Level.SEVERE, null,
 					ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(StudentView.class.getName()).log(java.util.logging.Level.SEVERE, null,
+			java.util.logging.Logger.getLogger(ViewBenhNhan.class.getName()).log(java.util.logging.Level.SEVERE, null,
 					ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(StudentView.class.getName()).log(java.util.logging.Level.SEVERE, null,
+			java.util.logging.Logger.getLogger(ViewBenhNhan.class.getName()).log(java.util.logging.Level.SEVERE, null,
 					ex);
 		}
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new StudentView().setVisible(true);
+				new ViewBenhNhan().setVisible(true);
 			}
 		});
 	}
@@ -277,6 +283,9 @@ benhVien.DeleteRow(iD);
 	private javax.swing.JTextField texNgaySinh;
 	private javax.swing.JTextField texSDT;
 	private javax.swing.JTextField texGioiTinh;
-
+	//Benh An
+	private void thongTinBenhAn(java.awt.event.ActionEvent evt) {
+		
+	}
 
 }

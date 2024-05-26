@@ -49,8 +49,6 @@ public static void DeleteRow(String Id) {
         System.out.println(e);
     }
 }
-
-	    
 	    public ArrayList<BenhNhan> getListBenhNhan(){
 	        ArrayList<BenhNhan> list = new ArrayList<>();
 	        String sql = "SELECT * FROM BenhNhan";
