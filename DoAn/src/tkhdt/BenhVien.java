@@ -1,7 +1,12 @@
 package tkhdt;
 
 import java.lang.reflect.Array;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import view.Student;
 
 public class BenhVien {
 	private static BenhVien uniqueBenhVien;
@@ -11,26 +16,50 @@ public class BenhVien {
 	private DanhSachBenhNhan dsBenhNhan;
 	private KhoThuoc khoThuoc;
 
-	public BenhVien(String tenBenhVien, String sdtLienLac, ArrayList<NhanVienYTe> dsNhanVien,
-			DanhSachBenhNhan dsBenhNhan, KhoThuoc khoThuoc) {
-		super();
-		this.tenBenhVien = tenBenhVien;
-		this.sdtLienLac = sdtLienLac;
-		this.dsNhanVien = dsNhanVien;
-		this.dsBenhNhan = dsBenhNhan;
-		this.khoThuoc = khoThuoc;
-	}
+	private DAO dao= new DAO();
 
 	public BenhVien getBenhVien() {
 		return null;
+}
+public boolean addBenhNhan(BenhNhan b){
+	        
+	        String sql = "INSERT INTO BenhNhan(id,ten,ngaysinh,sdt,gioiTinh) "
+	                + "VALUES(?,?,?,?,?)";
+	        try {
+	            PreparedStatement ps = dao.getConnection().prepareStatement(sql);
+	            ps.setString(1, b.getId());
+	            ps.setString(2, b.getTen());
+	            ps.setDate(3, new Date(b.getNgaySinh().getTime()));
+	            ps.setString(4, b.getSdt());
+	            ps.setString(5, b.getGioiTinh());
+	            return ps.executeUpdate() > 0;
+	            
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return false;
+	    }
+	    
+	    public ArrayList<BenhNhan> getListBenhNhan(){
+	        ArrayList<BenhNhan> list = new ArrayList<>();
+	        String sql = "SELECT * FROM BenhNhan";
+	             try {
+	            PreparedStatement ps = dao.getConnection().prepareStatement(sql);
+	            ResultSet rs = ps.executeQuery();
+	            while(rs.next())  {
+	                BenhNhan benhNhan = new BenhNhan();
+	                benhNhan.setId(rs.getString("id"));
+	                benhNhan.setTen(rs.getString("ten"));
+	                benhNhan.setNgaySinh(rs.getDate("ngaysinh"));
+	                benhNhan.setSdt(rs.getString("sdt"));
+	                benhNhan.setGioiTinh("gioiTinh");
+	                list.add(benhNhan);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	         return list;
+	    }
 
-	}
-
-	public void xoaBenhNhan(QuanLyBenhNhan benhNhan) {
-
-	}
-
-	public void themBenhNhan(QuanLyBenhNhan benhNhan) {
-
-	}
 }

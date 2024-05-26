@@ -5,7 +5,7 @@
  */
 package view;
 
-import view.StudentView;
+import tkhdt.StudentView;
 
 /**
  *
