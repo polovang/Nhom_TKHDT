@@ -18,9 +18,7 @@ public class BenhVien {
 
 	private DAO dao= new DAO();
 
-	public BenhVien getBenhVien() {
-		return null;
-}
+
 public boolean addBenhNhan(BenhNhan b){
 	        
 	        String sql = "INSERT INTO BenhNhan(id,ten,ngaysinh,sdt,gioiTinh) "
