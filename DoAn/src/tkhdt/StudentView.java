@@ -42,6 +42,7 @@ public class StudentView extends javax.swing.JFrame {
 		showTable();
 	}
 
+
 	public void showTable() {
 		for (BenhNhan b : list) {
 			model.addRow(new Object[] { i++, b.getId(),b.getTen(),b.getNgaySinh(),b.getSdt(),b.getGioiTinh() });
@@ -217,15 +218,22 @@ public class StudentView extends javax.swing.JFrame {
 		BenhNhan b = list.get(list.size() - 1);
 		model.addRow(new Object[] { i++, b.getId(),b.getTen(),b.getNgaySinh(),b.getSdt(),b.getGioiTinh() });
 	}
+
+
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
-		int select = jTable1.getSelectedRow();
-		if (select > 0) {
-			model.removeRow(select);
-			list.remove(select);
-		} else {
-			JOptionPane.showMessageDialog(rootPane, "Vui Long Nhap !");
-		}
+	int select =jTable1.getSelectedRow();
+String iD = list.get(select).getId();
+	if(select>=0) {
+		model.removeRow(select);
+BenhVien benhVien = new BenhVien();
+benhVien.DeleteRow(iD);
+		list.remove(select);
+
+	}else {
+		JOptionPane.showMessageDialog(rootPane, "Vui Long Nhap !");
 	}
+}
+
 	public static void main(String args[]) {
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

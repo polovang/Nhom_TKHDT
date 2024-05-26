@@ -1,12 +1,12 @@
 package tkhdt;
 
 import java.lang.reflect.Array;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import view.Student;
 
 public class BenhVien {
 	private static BenhVien uniqueBenhVien;
@@ -40,6 +40,18 @@ public boolean addBenhNhan(BenhNhan b){
 	        
 	        return false;
 	    }
+
+public static void DeleteRow(String Id) {
+	Connection connection = new DAO().getConnection();
+    try {  
+        PreparedStatement st = connection.prepareStatement("DELETE FROM BenhNhan WHERE ID = ?");
+        st.setString(1,Id);
+        st.executeUpdate(); 
+    } catch(Exception e) {
+        System.out.println(e);
+    }
+}
+
 	    
 	    public ArrayList<BenhNhan> getListBenhNhan(){
 	        ArrayList<BenhNhan> list = new ArrayList<>();
