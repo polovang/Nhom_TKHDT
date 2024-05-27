@@ -49,11 +49,11 @@ public static void DeleteRow(String Id) {
         System.out.println(e);
     }
 }
-	    public ArrayList<BenhNhan> getListBenhNhan(){
+	    public static ArrayList<BenhNhan> getListBenhNhan(){
 	        ArrayList<BenhNhan> list = new ArrayList<>();
 	        String sql = "SELECT * FROM BenhNhan";
 	             try {
-	            PreparedStatement ps = dao.getConnection().prepareStatement(sql);
+	            PreparedStatement ps = new DAO().getConnection().prepareStatement(sql);
 	            ResultSet rs = ps.executeQuery();
 	            while(rs.next())  {
 	                BenhNhan benhNhan = new BenhNhan();

@@ -69,23 +69,30 @@ public class HoaDon {
 	}
 	public HoaDon inHoaDon(String id) {
 		HoaDon hd = new HoaDon();
+		Thuoc thuoc = new Thuoc();
 	    Connection connection = new DAO().getConnection();
 	    try {
 	        PreparedStatement st = connection.prepareStatement(
-	                "SELECT DonThuoc.*,HoaDon.*" +
+	                "SELECT DonThuoc.*,HoaDon.*,Thuoc.*, (Thuoc.gia*Thuoc.soLuong) AS Thanh Tien " +
 	                "FROM BenhNhan" +
-	                "JOIN HoaDon on BenhNhan.id = HoaDon.id_BN " +"JOIN DonThuoc on DonThuoc.idDonThuoc=HoaDon.id"+
+	                "JOIN HoaDon on BenhNhan.id = HoaDon.id_BN " +"JOIN DonThuoc on DonThuoc.idDonThuoc=HoaDon.id"+"JOIN Thuoc on Thuoc.maThuoc=DonThuoc.id"+
 	                "WHERE BenhNhan.id = ?");
 	        st.setString(1, id);
 	        ResultSet rs = st.executeQuery();
 
 	        if (rs.next()) {
+	        	
 	           hd.setId(rs.getString("id"));
 	           hd.setId_BN(rs.getString("id_BN"));
 	           hd.setNgayThanhToan(rs.getDate("ngayThanhToan"));
 	           hd.setNvPhatThuoc(rs.getString("nvPhatThuoc"));
 	           hd.getDonThuoc().setIdDonThuoc(rs.getString("idDonThuoc"));
 	           hd.getDonThuoc().setIdDonThuoc(rs.getString("idDonThuoc"));
+	           thuoc.setTenThuoc(rs.getString("tenThuoc"));
+	           thuoc.setMoTa(rs.getString("moTa"));
+	           thuoc.setSoLuong(rs.getInt("soLuong"));
+	           thuoc.setGia(rs.getFloat("gia"));
+	           
 	               } 
 	    } catch (Exception e) {
 	        System.out.println(e);

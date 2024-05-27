@@ -1,6 +1,8 @@
 package tkhdt;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -120,16 +122,19 @@ public class ViewBenhAn extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(this, "Vui lòng nhập ID");
 			return;
 		}
-
 		BenhNhan benhNhan = new BenhNhan();
 		BenhAn an = benhNhan.kiemTranBenhAn(id);
-		if (an != null) {
-			model.setRowCount(0);
-			Object[] rowData = { an.getId(), an.getNguoiThamKham(), an.getNgayKham(), an.getTenBenh() };
-			model.addRow(rowData);
-		} else {
+		List<BenhNhan> ds = BenhVien.getListBenhNhan();
+		for (BenhNhan nhan : ds) {
+			if (id.equals(nhan.getId()) && an != null) {
+				model.setRowCount(0);
+				Object[] rowData = { an.getId(), an.getNguoiThamKham(), an.getNgayKham(), an.getTenBenh() };
+				model.addRow(rowData);
+				break;
+			}
 			JOptionPane.showMessageDialog(this, "Không tìm thấy bệnh án với ID: " + id);
 		}
+
 	}
 
 	public static void main(String args[]) {

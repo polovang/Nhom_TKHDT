@@ -6,16 +6,27 @@ import java.util.List;
 
 public class DonThuoc implements QuanLyDonThuoc {
 	private String idDonThuoc;
+	private String id;
 	private List<Thuoc> dsThuoc= new  ArrayList<>();
 	private Date ngaykeDon;
 	private boolean daDuocPhat;
     
+	
+
 	public String getIdDonThuoc() {
 		return idDonThuoc;
 	}
 
 	public void setIdDonThuoc(String idDonThuoc) {
 		this.idDonThuoc = idDonThuoc;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public List<Thuoc> getDsThuoc() {
