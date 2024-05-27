@@ -52,7 +52,7 @@ public class ViewHoaDon extends javax.swing.JFrame {
 		jLabel2.setText("ID");
 
 		jLabel3.setText("Mã Hóa Đơn: ");
-		jLabel4.setText(" ");
+		jLabel4.setText("");
 		
 		jLabel5.setText("ID Bệnh Nhân: ");
 		jLabel6.setText(" ");
