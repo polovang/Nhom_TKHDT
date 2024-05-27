@@ -65,7 +65,7 @@ public class BenhNhan {
 	                "SELECT BenhNhan.id, BenhAn.nguoiThamKham, BenhAn.ngayKham, BenhAn.tenBenh " +
 	                "FROM BenhNhan " +
 	                "JOIN BenhAn on BenhNhan.id = BenhAn.id " +
-	                "WHERE BenhAn.id = ?");
+	                "WHERE BenhNhan.id = ?");
 	        st.setString(1, id);
 	        ResultSet rs = st.executeQuery();
 

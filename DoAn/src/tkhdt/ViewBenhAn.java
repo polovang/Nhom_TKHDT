@@ -126,20 +126,23 @@ public class ViewBenhAn extends javax.swing.JFrame {
        texTen.setText("");
        model.setRowCount(0);
     }
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-       String id = texId.getText();
-       BenhNhan benhNhan = new BenhNhan();
-       BenhAn an =benhNhan.kiemTranBenhAn(id);
-       if(an!=null) {
-    	   model.setRowCount(0);
-    	   Object[] rowData = {an.getId(),an.getNguoiThamKham(),an.getNgayKham(),an.getTenBenh()};
-           model.addRow(rowData);
-       }
+        String id = texId.getText();
+        if (id.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập ID");
+            return;
+        }
+        
+        BenhNhan benhNhan = new BenhNhan();
+        BenhAn an = benhNhan.kiemTranBenhAn(id);
+        if (an != null) {
+            model.setRowCount(0);
+            Object[] rowData = {an.getId(), an.getNguoiThamKham(), an.getNgayKham(), an.getTenBenh()};
+            model.addRow(rowData);
+        } else {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy bệnh án với ID: " + id);
+        }
     }
-
-  
-
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
