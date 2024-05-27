@@ -6,8 +6,9 @@ public  class Thuoc {
 	private String tenThuoc;
 	private String moTa;
 	private int soLuong;
-    private double gia;
-	public Thuoc(String tenThuoc, String moTa, int soLuong, double gia) {
+    private float gia;
+	
+	public Thuoc(String tenThuoc, String moTa, int soLuong, float gia) {
 		super();
 		this.tenThuoc = tenThuoc;
 		this.moTa = moTa;
@@ -32,13 +33,15 @@ public  class Thuoc {
 	public void setSoLuong(int soLuong) {
 		this.soLuong = soLuong;
 	}
-	public double getGia() {
+	public float getGia() {
 		return gia;
 	}
-	public void setGia(double gia) {
+	public void setGia(float gia) {
 		this.gia = gia;
 	}
-     
+    public float tienThuoc() {
+    	return getGia()*getSoLuong();
+    }
 	
 
 }

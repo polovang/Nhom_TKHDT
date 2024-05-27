@@ -125,6 +125,7 @@ public class ViewBenhNhan extends javax.swing.JFrame {
 		jScrollPane1.setViewportView(jTable1);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(
 		    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

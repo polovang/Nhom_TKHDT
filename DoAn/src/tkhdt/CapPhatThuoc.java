@@ -1,5 +1,5 @@
 package tkhdt;
 
 public interface CapPhatThuoc  {
- public double phuPhi();
+ public float phuPhi();
 }

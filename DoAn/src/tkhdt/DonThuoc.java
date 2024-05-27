@@ -2,21 +2,43 @@ package tkhdt;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DonThuoc implements QuanLyDonThuoc {
 	private String idDonThuoc;
-	private ArrayList<Thuoc> dsThuoc;
+	private List<Thuoc> dsThuoc= new  ArrayList<>();
 	private Date ngaykeDon;
-	private Bac_Si bacSiKeDon;
 	private boolean daDuocPhat;
+    
+	public String getIdDonThuoc() {
+		return idDonThuoc;
+	}
 
-	public DonThuoc(String idDonThuoc, ArrayList<Thuoc> dsThuoc, Date ngaykeDon, Bac_Si bacSiKeDon,
-			boolean daDuocPhat) {
-		super();
+	public void setIdDonThuoc(String idDonThuoc) {
 		this.idDonThuoc = idDonThuoc;
+	}
+
+	public List<Thuoc> getDsThuoc() {
+		return dsThuoc;
+	}
+
+	public void setDsThuoc(List<Thuoc> dsThuoc) {
 		this.dsThuoc = dsThuoc;
+	}
+
+	public Date getNgaykeDon() {
+		return ngaykeDon;
+	}
+
+	public void setNgaykeDon(Date ngaykeDon) {
 		this.ngaykeDon = ngaykeDon;
-		this.bacSiKeDon = bacSiKeDon;
+	}
+
+	public boolean isDaDuocPhat() {
+		return daDuocPhat;
+	}
+
+	public void setDaDuocPhat(boolean daDuocPhat) {
 		this.daDuocPhat = daDuocPhat;
 	}
 
@@ -38,8 +60,6 @@ public class DonThuoc implements QuanLyDonThuoc {
 
 	}
 
-	public double tienThuoc() {
-		return 0.0;
-	}
+
 
 }
