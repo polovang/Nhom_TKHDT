@@ -24,6 +24,12 @@ public class ViewHoaDon extends javax.swing.JFrame {
 		jLabel2 = new javax.swing.JLabel();
 		jLabel3 = new javax.swing.JLabel();
 		jLabel4 = new javax.swing.JLabel();
+		jLabel5 = new javax.swing.JLabel();
+		jLabel6 = new javax.swing.JLabel();
+		jLabel7 = new javax.swing.JLabel();
+		jLabel8 = new javax.swing.JLabel();
+		jLabel9 = new javax.swing.JLabel();
+		jLabel10 = new javax.swing.JLabel();
 		JMenuBar bar = new JMenuBar();
 		setJMenuBar(bar);
 		bar.add(new JMenu("Trang Chủ"));
@@ -45,8 +51,17 @@ public class ViewHoaDon extends javax.swing.JFrame {
 
 		jLabel2.setText("ID");
 
-		jLabel3.setText("Tên Bệnh Án: ");
-		jLabel4.setText("NGUYEN VAN VANG");
+		jLabel3.setText("Mã Hóa Đơn: ");
+		jLabel4.setText(" ");
+		
+		jLabel5.setText("ID Bệnh Nhân: ");
+		jLabel6.setText(" ");
+		
+		jLabel7.setText("Ngày Thanh Toán: ");
+		jLabel8.setText(" ");
+		
+		jLabel9.setText("Người Phát Thuốc: ");
+		jLabel10.setText(" ");
 
 		jButton1.setText("Tra Cứu");
 		jButton1.addActionListener(evt -> jButton1ActionPerformed(evt));
@@ -65,8 +80,15 @@ public class ViewHoaDon extends javax.swing.JFrame {
 		JPanel jPanel_ = new JPanel(new BorderLayout());
 		jPanel_.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Hóa Đơn"));
 		JPanel jPanel1 = new JPanel(new FlowLayout(FlowLayout.LEADING));
+		jPanel1.setLayout(new GridLayout(4,2));
 		jPanel1.add(jLabel3);
 		jPanel1.add(jLabel4);
+		jPanel1.add(jLabel5);
+		jPanel1.add(jLabel6);
+		jPanel1.add(jLabel7);
+		jPanel1.add(jLabel8);
+		jPanel1.add(jLabel9);
+		jPanel1.add(jLabel10);
 		jPanel_.add(jPanel1, BorderLayout.NORTH);
 
 		JScrollPane jScrollPane = new JScrollPane(jTable1);
@@ -120,6 +142,12 @@ public class ViewHoaDon extends javax.swing.JFrame {
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JLabel jLabel3;
 	private javax.swing.JLabel jLabel4;
+	private javax.swing.JLabel jLabel5;
+	private javax.swing.JLabel jLabel6;
+	private javax.swing.JLabel jLabel7;
+	private javax.swing.JLabel jLabel8;
+	private javax.swing.JLabel jLabel9;
+	private javax.swing.JLabel jLabel10;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JTable jTable1;
 	private javax.swing.JTextField texId;

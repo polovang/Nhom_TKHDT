@@ -73,7 +73,7 @@ public class HoaDon {
 	    Connection connection = new DAO().getConnection();
 	    try {
 	        PreparedStatement st = connection.prepareStatement(
-	                "SELECT DonThuoc.*,HoaDon.*,Thuoc.*, (Thuoc.gia*Thuoc.soLuong) AS Thanh Tien " +
+	                "SELECT DonThuoc.*,HoaDon.*,Thuoc.*, BenhNhan.ten, (Thuoc.gia*Thuoc.soLuong) AS Thanh Tien " +
 	                "FROM BenhNhan" +
 	                "JOIN HoaDon on BenhNhan.id = HoaDon.id_BN " +"JOIN DonThuoc on DonThuoc.idDonThuoc=HoaDon.id"+"JOIN Thuoc on Thuoc.maThuoc=DonThuoc.id"+
 	                "WHERE BenhNhan.id = ?");
