@@ -10,4 +10,12 @@ public class Bac_Si extends NhanVienYTe {
 		this.namKinhNghiem = namKinhNghiem;
 	}
 
+	public int getNamKinhNghiem() {
+		return namKinhNghiem;
+	}
+
+	public void setNamKinhNghiem(int namKinhNghiem) {
+		this.namKinhNghiem = namKinhNghiem;
+	}
+
 }

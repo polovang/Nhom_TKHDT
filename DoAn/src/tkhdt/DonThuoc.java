@@ -34,8 +34,10 @@ public class DonThuoc implements QuanLyDonThuoc {
 	}
 
 	public void setDsThuoc(List<Thuoc> dsThuoc) {
-		this.dsThuoc = dsThuoc;
+	    this.dsThuoc = dsThuoc;
 	}
+
+
 
 	public Date getNgaykeDon() {
 		return ngaykeDon;

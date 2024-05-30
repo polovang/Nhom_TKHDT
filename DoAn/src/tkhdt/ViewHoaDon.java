@@ -16,7 +16,7 @@ public class ViewHoaDon extends javax.swing.JFrame {
 		setLocationRelativeTo(null);
 
 		model = (DefaultTableModel) jTable1.getModel();
-		model.setColumnIdentifiers(new Object[] { "Tên Thuốc", "Mô Tả", "Số Lượng", "Giá" });
+		model.setColumnIdentifiers(new Object[] { "STT","Tên Thuốc", "Mô Tả", "Số Lượng", "Giá", "Thành Tiền" });
 	}
 
 	private void initComponents() {
@@ -55,13 +55,13 @@ public class ViewHoaDon extends javax.swing.JFrame {
 		jLabel4.setText("");
 		
 		jLabel5.setText("ID Bệnh Nhân: ");
-		jLabel6.setText(" ");
+		jLabel6.setText("");
 		
 		jLabel7.setText("Ngày Thanh Toán: ");
-		jLabel8.setText(" ");
+		jLabel8.setText("");
 		
 		jLabel9.setText("Người Phát Thuốc: ");
-		jLabel10.setText(" ");
+		jLabel10.setText("");
 
 		jButton1.setText("Tra Cứu");
 		jButton1.addActionListener(evt -> jButton1ActionPerformed(evt));
@@ -78,7 +78,7 @@ public class ViewHoaDon extends javax.swing.JFrame {
 		jPanelp.add(jPanel, BorderLayout.NORTH);
 
 		JPanel jPanel_ = new JPanel(new BorderLayout());
-		jPanel_.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Hóa Đơn"));
+		jPanel_.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLUE), "Hóa Đơn"));
 		JPanel jPanel1 = new JPanel(new FlowLayout(FlowLayout.LEADING));
 		jPanel1.setLayout(new GridLayout(4,2));
 		jPanel1.add(jLabel3);
@@ -101,25 +101,31 @@ public class ViewHoaDon extends javax.swing.JFrame {
 	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-		String id = texId.getText();
-		if (id.trim().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Vui lòng nhập ID");
-			return;
-		}
-		BenhNhan benhNhan = new BenhNhan();
-		BenhAn an = benhNhan.kiemTranBenhAn(id);
-		List<BenhNhan> ds = BenhVien.getListBenhNhan();
-		for (BenhNhan nhan : ds) {
-			if (id.equals(nhan.getId()) && an != null) {
-				model.setRowCount(0);
-				Object[] rowData = { an.getId(), an.getNguoiThamKham(), an.getNgayKham(), an.getTenBenh() };
-				model.addRow(rowData);
-				break;
-			}
-			JOptionPane.showMessageDialog(this, "Không tìm thấy bệnh án với ID: " + id);
-		}
-
+	    String id = texId.getText();
+	    if (id.trim().isEmpty()) {
+	        JOptionPane.showMessageDialog(this, "Vui lòng nhập ID");
+	        return;
+	    }
+	    
+	    DefaultTableModel model = (DefaultTableModel) jTable1.getModel(); 
+	    model.setRowCount(0); 
+	    
+	    HoaDon hoaDon = new HoaDon();
+	    HoaDon don = hoaDon.inHoaDon(id);
+	    if (don != null) {
+	    	jLabel4.setText(don.getId());
+	    	jLabel6.setText(don.getId_BN());
+	    	jLabel10.setText(don.getNvPhatThuoc());
+	        int i = 1;
+	        for (Thuoc thuoc : don.getDonThuoc().getDsThuoc()) {
+	            Object[] rowData = {i++, thuoc.getTenThuoc(), thuoc.getMoTa(), thuoc.getSoLuong(), thuoc.getGia()};
+	            model.addRow(rowData); 
+	        }
+	    } else {
+	        JOptionPane.showMessageDialog(this, "Không tìm thấy hóa đơn với ID: " + id);
+	    }
 	}
+
 
 	public static void main(String args[]) {
 		try {
