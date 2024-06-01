@@ -1,6 +1,7 @@
 package tkhdt;
 
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -46,8 +47,7 @@ public class ViewHoaDon extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("HỆ THỐNG QUẢN LÝ BỆNH NHÂN VÀ PHÁT THUỐC");
 
-		jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
-		jLabel1.setText("THÔNG TIN BỆNH ÁN");
+	
 
 		jLabel2.setText("ID");
 
@@ -78,8 +78,8 @@ public class ViewHoaDon extends javax.swing.JFrame {
 		jPanelp.add(jPanel, BorderLayout.NORTH);
 
 		JPanel jPanel_ = new JPanel(new BorderLayout());
-		jPanel_.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLUE), "Hóa Đơn"));
-		JPanel jPanel1 = new JPanel(new FlowLayout(FlowLayout.LEADING));
+		jPanel_.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Hóa Đơn"));
+		JPanel jPanel1 = new JPanel();
 		jPanel1.setLayout(new GridLayout(4,2));
 		jPanel1.add(jLabel3);
 		jPanel1.add(jLabel4);
@@ -89,12 +89,21 @@ public class ViewHoaDon extends javax.swing.JFrame {
 		jPanel1.add(jLabel8);
 		jPanel1.add(jLabel9);
 		jPanel1.add(jLabel10);
+		jLabel4.setHorizontalAlignment(SwingConstants.LEFT);
+		jLabel6.setHorizontalAlignment(SwingConstants.LEFT);
+		jLabel8.setHorizontalAlignment(SwingConstants.LEFT);
+		jLabel10.setHorizontalAlignment(SwingConstants.LEFT);
 		jPanel_.add(jPanel1, BorderLayout.NORTH);
 
 		JScrollPane jScrollPane = new JScrollPane(jTable1);
 		jPanel_.add(jScrollPane, BorderLayout.CENTER);
-
+		
+		JPanel panel = new JPanel(new GridLayout(1,2));
+		panel.add(jLabel11= new JLabel("Thành Tiền:"));
+		panel.add(texTT= new JTextField(5));
+		jPanel_.add(panel, BorderLayout.SOUTH);
 		jPanelp.add(jPanel_, BorderLayout.CENTER);
+	
 		add(jPanelp, BorderLayout.CENTER);
 
 		setSize(new Dimension(700, 500));
@@ -116,9 +125,16 @@ public class ViewHoaDon extends javax.swing.JFrame {
 	    	jLabel4.setText(don.getId());
 	    	jLabel6.setText(don.getId_BN());
 	    	jLabel10.setText(don.getNvPhatThuoc());
+	    
+	    	float re = don.tongTienThuoc();
+	    	String reAsString = String.valueOf(re);
+	    	texTT.setText(reAsString);
+
+	    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd//MM/yyyy");
+	    	jLabel8.setText(dateFormat.format(don.getNgayThanhToan()));
 	        int i = 1;
 	        for (Thuoc thuoc : don.getDonThuoc().getDsThuoc()) {
-	            Object[] rowData = {i++, thuoc.getTenThuoc(), thuoc.getMoTa(), thuoc.getSoLuong(), thuoc.getGia()};
+	            Object[] rowData = {i++, thuoc.getTenThuoc(), thuoc.getMoTa(), thuoc.getSoLuong(), thuoc.getGia(),thuoc.tienThuoc()};
 	            model.addRow(rowData); 
 	        }
 	    } else {
@@ -154,8 +170,12 @@ public class ViewHoaDon extends javax.swing.JFrame {
 	private javax.swing.JLabel jLabel8;
 	private javax.swing.JLabel jLabel9;
 	private javax.swing.JLabel jLabel10;
+	private javax.swing.JLabel jLabel11;
+	private javax.swing.JLabel jLabel12;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JTable jTable1;
 	private javax.swing.JTextField texId;
 	private javax.swing.JTextField texTen;
+	private javax.swing.JTextField texTT;
+
 }

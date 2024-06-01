@@ -10,7 +10,9 @@ public class DonThuoc implements QuanLyDonThuoc {
 	private List<Thuoc> dsThuoc= new  ArrayList<>();
 	private Date ngaykeDon;
 	private boolean daDuocPhat;
-    
+    private float giamGia;
+	
+
 	
 
 	public String getIdDonThuoc() {
@@ -34,10 +36,8 @@ public class DonThuoc implements QuanLyDonThuoc {
 	}
 
 	public void setDsThuoc(List<Thuoc> dsThuoc) {
-	    this.dsThuoc = dsThuoc;
+		this.dsThuoc = dsThuoc;
 	}
-
-
 
 	public Date getNgaykeDon() {
 		return ngaykeDon;
@@ -53,6 +53,14 @@ public class DonThuoc implements QuanLyDonThuoc {
 
 	public void setDaDuocPhat(boolean daDuocPhat) {
 		this.daDuocPhat = daDuocPhat;
+	}
+
+	public float getGiamGia() {
+		return giamGia;
+	}
+
+	public void setGiamGia(float giamGia) {
+		this.giamGia = giamGia;
 	}
 
 	@Override

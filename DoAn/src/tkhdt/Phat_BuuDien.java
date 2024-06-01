@@ -7,4 +7,4 @@ public class Phat_BuuDien implements CapPhatThuoc {
 		return 30/100;
 	}
 
-}
+} 
