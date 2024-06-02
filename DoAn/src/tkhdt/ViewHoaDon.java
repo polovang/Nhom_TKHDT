@@ -101,6 +101,7 @@ public class ViewHoaDon extends javax.swing.JFrame {
 		JPanel panel = new JPanel(new GridLayout(1,2));
 		panel.add(jLabel11= new JLabel("Thành Tiền:"));
 		panel.add(texTT= new JTextField(5));
+		texTT.setEditable(false);
 		jPanel_.add(panel, BorderLayout.SOUTH);
 		jPanelp.add(jPanel_, BorderLayout.CENTER);
 	
@@ -126,9 +127,9 @@ public class ViewHoaDon extends javax.swing.JFrame {
 	    	jLabel6.setText(don.getId_BN());
 	    	jLabel10.setText(don.getNvPhatThuoc());
 	    
-	    	float re = don.tongTienThuoc();
-	    	String reAsString = String.valueOf(re);
-	    	texTT.setText(reAsString);
+	    	
+	    	String reAsString = String.valueOf(don.getTongTienHoaDon());
+	    	texTT.setText(reAsString+" VND");
 
 	    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd//MM/yyyy");
 	    	jLabel8.setText(dateFormat.format(don.getNgayThanhToan()));

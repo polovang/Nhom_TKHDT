@@ -1,10 +1,10 @@
 package tkhdt;
 
-public class Phat_TrucTiep implements CapPhatThuoc{
+public class Phat_TrucTiep implements CapPhatThuoc {
 
 	@Override
 	public float phuPhi() {
-		return 0;
+		return 0f;
 	}
 
 }

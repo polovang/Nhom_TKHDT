@@ -17,6 +17,7 @@ public class HoaDon {
 	private QuanLyDonThuoc quanLyThuoc;
 	private DonThuoc donThuoc;
 	private String loaiPhatThuoc;
+	private float tongTienHoaDon;
 
 	public String getId_BN() {
 		return id_BN;
@@ -66,21 +67,17 @@ public class HoaDon {
 		this.loaiPhatThuoc = b;
 	}
 
-	public float tongTienThuoc() {
-		float re = 0;
-		if (cachPhatThuoc != null && donThuoc != null && donThuoc.getDsThuoc() != null) {
-			for (Thuoc thuoc : donThuoc.getDsThuoc()) {
-				re += thuoc.tienThuoc();
-			}
-			return re ;
-		} else {
+	public float getTongTienHoaDon() {
+		return tongTienHoaDon;
+	}
 
-			return 0;
-		}
+	public void setTongTienHoaDon(float tongTienHoaDon) {
+		this.tongTienHoaDon = tongTienHoaDon;
 	}
 
 	public HoaDon inHoaDon(String id) {
 		HoaDon hd = new HoaDon();
+		float re = 0;
 		Connection connection = new DAO().getConnection();
 		try {
 			PreparedStatement st = connection.prepareStatement(
@@ -88,12 +85,7 @@ public class HoaDon {
 							+ "FROM BenhNhan " + "JOIN Hoa_Don ON BenhNhan.id = Hoa_Don.id_BN "
 							+ "JOIN Don_Thuoc ON Don_Thuoc.idDonThuoc = Hoa_Don.id "
 							+ "JOIN C_Thuoc ON C_Thuoc.maThuoc = Don_Thuoc.id " + "WHERE BenhNhan.id = ?");
-			PreparedStatement st2 = connection.prepareStatement(
-					"SELECT C_Thuoc.maThuoc,  SUM(C_Thuoc.soLuong * C_Thuoc.gia * (1 - Don_Thuoc.GiamGia))"
-							+ "FROM BenhNhan " + "JOIN Hoa_Don ON BenhNhan.id = Hoa_Don.id_BN "
-							+ "JOIN Don_Thuoc ON Don_Thuoc.idDonThuoc = Hoa_Don.id "
-							+ "JOIN C_Thuoc ON C_Thuoc.maThuoc = Don_Thuoc.id " + "WHERE BenhNhan.id = ?"
-							+ "Group by C_Thuoc.maThuoc");
+
 			st.setString(1, id);
 			ResultSet rs = st.executeQuery();
 
@@ -102,30 +94,34 @@ public class HoaDon {
 				hd.setId_BN(rs.getString("id_BN"));
 				hd.setNgayThanhToan(rs.getDate("ngayThanhToan"));
 				hd.setNvPhatThuoc(rs.getString("nvPhatThuoc"));
-                hd.setLoaiPhatThuoc(rs.getString("loaiPhatThuoc"));
+				hd.setLoaiPhatThuoc(rs.getString("loaiPhatThuoc"));
 				if (hd.getDonThuoc() == null) {
 					hd.setDonThuoc(new DonThuoc());
 				}
 				List<Thuoc> dsThuoc = new ArrayList<>();
 
 				do {
+
 					Thuoc thuoc = new Thuoc();
 					thuoc.setTenThuoc(rs.getString("tenThuoc"));
 					thuoc.setMoTa(rs.getString("moTa"));
 					thuoc.setSoLuong(rs.getInt("soLuong"));
 					thuoc.setGia(rs.getFloat("gia"));
 					thuoc.tienThuoc();
-
+					re += thuoc.tienThuoc();
 					dsThuoc.add(thuoc);
-					//hd.tongTienThuoc();
+
 				} while (rs.next());
 
 				hd.getDonThuoc().setDsThuoc(dsThuoc);
-                float re =0;
-                if(getLoaiPhatThuoc().equals("Buu Dien")) {
-                	  re=  (float) (hd.tongTienThuoc() +hd.tongTienThuoc()*0.3);
-                }
-                
+
+				if (hd.getLoaiPhatThuoc() != null && hd.getLoaiPhatThuoc().equalsIgnoreCase("Buu Dien")) {
+					CapPhatThuoc thuoc = new Phat_BuuDien();
+					re += re * thuoc.phuPhi();
+
+				}
+				hd.setTongTienHoaDon(re);
+
 			}
 		} catch (Exception e) {
 			System.out.println(e);
